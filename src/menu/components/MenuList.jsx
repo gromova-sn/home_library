@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Input, Menu } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
 class MenuList extends Component {
   activeItem = "home"

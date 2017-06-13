@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -7,10 +7,9 @@ import {
 import App from './App';
 import WatchUp from './pages/components/WatchUp';
 import LearnUp from './pages/components/LearnUp';
-import TaskIn from './pages/components/TaskIn';
 import MenuList from "./menu/components/MenuList";
 
-class Routing extends React.Component {
+class Routing extends Component {
 
 	render() {
 		return (
@@ -18,7 +17,7 @@ class Routing extends React.Component {
 				<div>
 					<MenuList />
 					<Switch>
-						<Route exact path="/" component={TaskIn}/>
+						<Route exact path="/" component={App}/>
 						<Route path="/video" component={WatchUp}/>
 						<Route path="/learn" component={LearnUp}/>
 					</Switch>
