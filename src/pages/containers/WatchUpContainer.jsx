@@ -23,10 +23,20 @@ class WatchUpContainer extends Component {
 			})
 	}
 
+	removeLink = (item) => {
+		axios.post(
+				`/api/remove`,
+				item
+			)
+	}
+
 	render() {
 		if (!this.state.dataToWatch.length) return null
 		return (
-			<WatchUp data={this.state.dataToWatch} />
+			<WatchUp
+				data={this.state.dataToWatch}
+				removeLink={this.removeLink}
+			/>
 		)
 	}
 }

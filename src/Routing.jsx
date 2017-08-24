@@ -4,7 +4,7 @@ import {
   Route,
   Switch
 } from "react-router-dom";
-import App from "./App";
+import AddLinks from "./pages/containers/AddLinksContainer";
 import WatchUp from "./pages/containers/WatchUpContainer";
 import LearnUp from "./pages/containers/LearnUpContainer";
 import MenuList from "./menu/components/MenuList";
@@ -16,7 +16,7 @@ class Routing extends Component {
 				<div>
 					<MenuList />
 					<Switch>
-						<Route exact path="/" component={App}/>
+						<Route exact path="/" component={AddLinks}/>
 						<Route path="/video" component={WatchUp}/>
 						<Route path="/learn" component={LearnUp}/>
 					</Switch>

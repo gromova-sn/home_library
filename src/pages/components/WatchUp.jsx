@@ -4,10 +4,12 @@ import {
 	Container,
 	Divider,
 	List,
+	Icon,
 } from "semantic-ui-react";
 import 'semantic-ui-css/semantic.min.css';
+import "./Pages.css";
 
-const WatchUp = ({ data }) => (
+const WatchUp = ({ data, removeLink }) => (
 	<Container textAlign='justified'>
 		<div>WatchUp</div>
 		<Divider />
@@ -19,9 +21,19 @@ const WatchUp = ({ data }) => (
 						href={item.url}
 						target="_blank"
 						rel="noopener noreferrer"
+						className="toLink"
 					>
 						{item.url}
 					</a>
+					<span
+						className="iconInline"
+						onClick={removeLink.bind(this, item)}
+					>
+						<Icon
+							name="trash"
+							color="blue" 
+						/>
+					</span>
 				</List.Item>
 			)
 		})}
@@ -29,8 +41,9 @@ const WatchUp = ({ data }) => (
 	</Container>
 )
 
-WatchUp.PropTypes = {
-	data: PropTypes.object
+WatchUp.propTypes = {
+	data: PropTypes.array.isRequired,
+	removeLink: PropTypes.func,
 }
 
 

@@ -23,11 +23,19 @@ class LearnUpContainer extends Component {
 			})
 	}
 
+	removeLink = (item) => {
+		axios.post(
+				`/api/remove`,
+				item
+			)
+	}
+
 	render() {
 		if (!this.state.dataToLearn.length) return null
 		return (
 			<LearnUp
 				data={this.state.dataToLearn}
+				removeLink={this.removeLink}
 			/>
 		)
 	}

@@ -13,6 +13,10 @@ app.post("/api/add", function(req, res) {
 	res.json(db.links.save(req.body));
 });
 
+app.post("/api/remove", function(req, res) {
+	res.json(db.links.remove(req.body, false));
+});
+
 const port = 4000;
 app.listen(port);
 console.log("magic happens on port ", port)
