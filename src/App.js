@@ -7,13 +7,17 @@ import {
 	Form,
 	Label,
 } from "semantic-ui-react";
-import 'semantic-ui-css/semantic.min.css';
-import './App.css';
+import axios from "axios";
+import "semantic-ui-css/semantic.min.css";
+import "./App.css";
 
 class App extends Component {
-	state = {
-		buttonShow: false,
-		memoryLink: ""
+	constructor(props) {
+		super(props);
+		this.state = {
+			buttonShow: false,
+			memoryLink: "",
+		}
 	}
 
 	showBottonAdd = () => {
@@ -23,7 +27,16 @@ class App extends Component {
 	}
 
 	sendTo = (field) => {
-		console.log(field, this.state.memoryLink)
+		axios.post(
+			`/api/add`,
+			{
+				url: this.state.memoryLink,
+				[field]: true,
+			}
+		)
+		this.setState({
+			memoryLink: ""
+		})
 	}
 
 	changeMemory = (e) => {
@@ -33,9 +46,9 @@ class App extends Component {
 	}
 
 	render() {
-		const { buttonShow } = this.state
+		const { buttonShow, memoryLink } = this.state
 		return (
-			<Container textAlign='justified'>
+			<Container textAlign="justified">
 				<b>Oh, come on..realy?! </b>
 				<Divider />
 				<Form>
@@ -45,6 +58,7 @@ class App extends Component {
 							placeholder="Add to memory.."
 							onClick={this.showBottonAdd}
 							onChange={this.changeMemory.bind(this)}
+							value={memoryLink}
 						/>
 						<Label pointing>Add smth you want to save</Label>
 					</Form.Field>
@@ -52,9 +66,9 @@ class App extends Component {
 				<div className="btnGroup">
 					{buttonShow &&
 						<Button.Group>
-							<Button color="teal" onClick={this.sendTo.bind(this, "learn")}>To Learn</Button>
+							<Button color="teal" onClick={this.sendTo.bind(this, "to_learn")}>To Learn</Button>
 							<Button.Or />
-							<Button color="teal" onClick={this.sendTo.bind(this, "watch")}>To Watch</Button>
+							<Button color="teal" onClick={this.sendTo.bind(this, "to_watch")}>To Watch</Button>
 						</Button.Group>
 					}
 				</div>

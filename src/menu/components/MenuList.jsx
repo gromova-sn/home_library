@@ -7,6 +7,7 @@ class MenuList extends Component {
   render() {
     return (
       <Menu secondary>
+        <Menu.Item href='/'>Добавить</Menu.Item>
         <Menu.Item href='/video'>К просмотру</Menu.Item>
         <Menu.Item href='/learn'>К изучению</Menu.Item>
       </Menu>

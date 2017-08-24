@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Switch
-} from 'react-router-dom';
-import App from './App';
-import WatchUp from './pages/components/WatchUp';
-import LearnUp from './pages/components/LearnUp';
+} from "react-router-dom";
+import App from "./App";
+import WatchUp from "./pages/containers/WatchUpContainer";
+import LearnUp from "./pages/containers/LearnUpContainer";
 import MenuList from "./menu/components/MenuList";
 
 class Routing extends Component {
-
 	render() {
 		return (
 			<Router>
@@ -25,7 +24,6 @@ class Routing extends Component {
 			</Router>
 		);
 	}
-
 }
 
 export default Routing;
