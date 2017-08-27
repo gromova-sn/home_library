@@ -24,6 +24,11 @@ class LearnUpContainer extends Component {
 	}
 
 	removeLink = (item) => {
+		let links = this.state.dataToLearn;
+		links.splice(links.indexOf(item), 1);
+		this.setState({
+				dataToLearn: links
+			});
 		axios.post(
 				`/api/remove`,
 				item

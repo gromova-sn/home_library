@@ -1,4 +1,4 @@
-import { INPUT_LINK, SEND_TO_PAGE } from "../actions/index";
+import { ADD_LINK, SEND_TO_PAGE } from "../actions/index";
 
 const initialState = {
 	memoryLink: "",
@@ -7,7 +7,7 @@ const initialState = {
 
 function links(state = initialState, action) {
 	switch (action.type) {
-		case INPUT_LINK:
+		case ADD_LINK:
 			return Object.assign({}, state, {
 				memoryLink: action.link,
 				buttonShow: true,

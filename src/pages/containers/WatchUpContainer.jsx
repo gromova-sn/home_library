@@ -24,6 +24,11 @@ class WatchUpContainer extends Component {
 	}
 
 	removeLink = (item) => {
+		let links = this.state.dataToWatch;
+		links.splice(links.indexOf(item), 1);
+		this.setState({
+				dataToWatch: links
+			});
 		axios.post(
 				`/api/remove`,
 				item

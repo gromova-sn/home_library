@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { inputLink, sendToPage } from "../../actions/index";
+import { addLink, sendToPage } from "../../actions/index";
 import AddLinks from "../components/AddLinks";
 import axios from "axios";
 
 class AddLinksContainer extends Component {
 	sendTo = (field) => {
-		console.log(field)
 		axios.post(
 			`/api/add`,
 			{
@@ -31,7 +30,7 @@ class AddLinksContainer extends Component {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		showButtonAdd: e => dispatch(inputLink(e.target.value)),
+		showButtonAdd: e => dispatch(addLink(e.target.value)),
 		sendToPage: () => dispatch(sendToPage())
 	}
 };

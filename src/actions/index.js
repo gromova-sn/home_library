@@ -1,9 +1,9 @@
-export const INPUT_LINK = "INPUT_LINK"
+export const ADD_LINK = "ADD_LINK"
 export const SEND_TO_PAGE = "SEND_TO_PAGE"
 
-export function inputLink(link) {
+export function addLink(link) {
 	return {
-		type: INPUT_LINK,
+		type: ADD_LINK,
 		link,
 	}
 }
