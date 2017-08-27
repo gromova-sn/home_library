@@ -4,10 +4,10 @@ import {
   Route,
   Switch
 } from "react-router-dom";
-import AddLinks from "./pages/containers/AddLinksContainer";
-import WatchUp from "./pages/containers/WatchUpContainer";
-import LearnUp from "./pages/containers/LearnUpContainer";
-import MenuList from "./menu/components/MenuList";
+import AddLinks from "./containers/AddLinksContainer";
+import WatchUp from "./containers/WatchUpContainer";
+import LearnUp from "./containers/LearnUpContainer";
+import MenuList from "./components/MenuList";
 
 class Routing extends Component {
 	render() {
