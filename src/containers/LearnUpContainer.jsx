@@ -1,49 +1,44 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
 import LearnUp from "../components/LearnUp";
+import { fetchDataGet, fetchDataPost } from "../actions/index";
 
 class LearnUpContainer extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			dataToLearn: []
-		}
-	}
-
 	componentDidMount() {
 		this.getApi()
 	}
 
 	getApi = () => {
-		axios.get('/api/to_learn')
-			.then((response) => {
-				this.setState({
-					dataToLearn: response.data
-				})
-			})
+		this.props.fetchDataGet("to_learn")
 	}
 
 	removeLink = (item) => {
-		let links = this.state.dataToLearn;
-		links.splice(links.indexOf(item), 1);
-		this.setState({
-				dataToLearn: links
-			});
-		axios.post(
-				`/api/remove`,
-				item
-			)
+		this.props.fetchDataPost("remove", item)
 	}
 
 	render() {
-		if (!this.state.dataToLearn.length) return null
 		return (
 			<LearnUp
-				data={this.state.dataToLearn}
+				data={this.props.data}
 				removeLink={this.removeLink}
+				isFetching={this.props.isFetching}
 			/>
 		)
 	}
 }
 
-export default LearnUpContainer;
+const mapDispatchToProps = dispatch => {
+	return {
+		fetchDataGet: get => dispatch(fetchDataGet(get)),
+		fetchDataPost: (post, item) => dispatch(fetchDataPost(post, item)),
+	}
+};
+
+const mapStateToProps = state => {
+	return {
+		data: state.data,
+		isFetching: state.isFetching,
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LearnUpContainer);

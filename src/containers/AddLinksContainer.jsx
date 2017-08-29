@@ -1,19 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addLink, sendToPage } from "../actions/index";
+import { addLink, fetchDataPost } from "../actions/index";
 import AddLinks from "../components/AddLinks";
-import axios from "axios";
 
 class AddLinksContainer extends Component {
 	sendTo = (field) => {
-		axios.post(
-			`/api/add`,
+		this.props.fetchDataPost(
+			"add",
 			{
 				url: this.props.memoryLink,
 				[field]: true,
-			}
+			},
+			false
 		)
-		this.props.sendToPage()
 	}
 
 	render() {
@@ -31,7 +30,7 @@ class AddLinksContainer extends Component {
 const mapDispatchToProps = dispatch => {
 	return {
 		showButtonAdd: e => dispatch(addLink(e.target.value)),
-		sendToPage: () => dispatch(sendToPage())
+		fetchDataPost: (post, item) => dispatch(fetchDataPost(post, item)),
 	}
 };
 

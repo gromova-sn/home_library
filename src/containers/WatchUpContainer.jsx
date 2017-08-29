@@ -1,49 +1,44 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
 import WatchUp from "../components/WatchUp";
+import { fetchDataGet, fetchDataPost } from "../actions/index";
 
 class WatchUpContainer extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			dataToWatch: []
-		}
-	}
-
 	componentDidMount() {
 		this.getApi()
 	}
 
 	getApi = () => {
-		axios.get('/api/to_watch')
-			.then((response) => {
-				this.setState({
-					dataToWatch: response.data
-				})
-			})
+		this.props.fetchDataGet("to_watch")
 	}
 
 	removeLink = (item) => {
-		let links = this.state.dataToWatch;
-		links.splice(links.indexOf(item), 1);
-		this.setState({
-				dataToWatch: links
-			});
-		axios.post(
-				`/api/remove`,
-				item
-			)
+		this.props.fetchDataPost("remove", item)
 	}
 
 	render() {
-		if (!this.state.dataToWatch.length) return null
 		return (
 			<WatchUp
-				data={this.state.dataToWatch}
+				data={this.props.data}
 				removeLink={this.removeLink}
+				isFetching={this.props.isFetching}
 			/>
 		)
 	}
 }
 
-export default WatchUpContainer;
+const mapDispatchToProps = dispatch => {
+	return {
+		fetchDataGet: get => dispatch(fetchDataGet(get)),
+		fetchDataPost: (post, item) => dispatch(fetchDataPost(post, item)),
+	}
+};
+
+const mapStateToProps = state => {
+	return {
+		data: state.data,
+		isFetching: state.isFetching,
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WatchUpContainer);
