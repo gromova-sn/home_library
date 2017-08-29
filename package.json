@@ -18,6 +18,8 @@
     "semantic-ui-react": "^0.68.5"
   },
   "devDependencies": {
+    "eslint": "^4.5.0",
+    "eslint-plugin-react": "^7.3.0",
     "react-scripts": "1.0.7"
   },
   "scripts": {
