@@ -16,7 +16,7 @@ export function sendToPage() {
 }
 
 export const REQUEST_WAIT = "REQUEST_WAIT";
-function requestWait(subreddit) {
+export function requestWait(subreddit) {
 	return {
 		type: REQUEST_WAIT,
 		subreddit
@@ -24,7 +24,7 @@ function requestWait(subreddit) {
 }
 
 export const RECEIVE_GET = "RECEIVE_GET";
-function receiveGet(json) {
+export function receiveGet(json) {
 	return {
 		type: RECEIVE_GET,
 		posts: json
@@ -34,7 +34,7 @@ function receiveGet(json) {
 export function fetchDataGet(subreddit) {
 	return function (dispatch) {
 		dispatch(requestWait(subreddit));
-		return fetch(`/api/${subreddit}`)
+		return fetch(`http://localhost:3000/api/${subreddit}`)
 			.then(response => response.json(),
 				error => console.error("An error occured.", error))
 			.then(json => dispatch(receiveGet(json)));
@@ -42,10 +42,9 @@ export function fetchDataGet(subreddit) {
 }
 
 export const RECEIVE_POST = "RECEIVE_POST";
-function receivePost(item) {
+export function receivePost() {
 	return {
 		type: RECEIVE_POST,
-		item
 	};
 }
 
@@ -53,7 +52,7 @@ export function fetchDataPost(subreddit, item, waiting = true) {
 	return function (dispatch) {
 		waiting && dispatch(requestWait(subreddit));
 		return fetch(
-			`/api/${subreddit}`,
+			`http://localhost:3000/api/${subreddit}`,
 			{
 				method: "POST",
 				headers: {
@@ -67,7 +66,7 @@ export function fetchDataPost(subreddit, item, waiting = true) {
 				if (subreddit === "add") {
 					return dispatch(sendToPage());
 				} else {
-					return dispatch(receivePost(item));
+					return dispatch(receivePost());
 				}
 			});
 	};
