@@ -8,10 +8,10 @@ export function addLink(link) {
 	};
 }
 
-export const SEND_TO_PAGE = "SEND_TO_PAGE";
-export function sendToPage() {
+export const EMPTY_INPUT = "EMPTY_INPUT";
+export function emptyInput() {
 	return {
-		type: SEND_TO_PAGE,
+		type: EMPTY_INPUT,
 	};
 }
 
@@ -64,7 +64,7 @@ export function fetchDataPost(subreddit, item, waiting = true) {
 			.then(resp => resp.json())
 			.then(() => {
 				if (subreddit === "add") {
-					return dispatch(sendToPage());
+					return dispatch(emptyInput());
 				} else {
 					return dispatch(receivePost());
 				}

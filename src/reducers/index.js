@@ -1,6 +1,6 @@
 import {
 	ADD_LINK,
-	SEND_TO_PAGE,
+	EMPTY_INPUT,
 	RECEIVE_GET,
 	REQUEST_WAIT,
 	RECEIVE_POST,
@@ -20,7 +20,7 @@ function links(state = initialState, action) {
 			memoryLink: action.link,
 			buttonShow: true,
 		});
-	case SEND_TO_PAGE:
+	case EMPTY_INPUT:
 		return Object.assign({}, state, {
 			memoryLink: "",
 			buttonShow: false,
@@ -35,8 +35,7 @@ function links(state = initialState, action) {
 			data: action.posts,
 		});
 	case RECEIVE_POST:
-		let _state = state.data;
-		_state.splice(_state.indexOf(action.item), 1);
+		let _state = state.data.filter(item => item.url !== action.item.url);
 		return Object.assign({}, state, {
 			data: _state,
 			isFetching: false,

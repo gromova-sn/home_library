@@ -11,7 +11,7 @@ import {
 import "semantic-ui-css/semantic.min.css";
 import "../style/Pages.css";
 
-const AddLinks = ({ showButtonAdd, buttonShow, memoryLink, sendTo }) => (
+const AddLinks = ({ showButtonAdd, buttonShow, memoryLink, sendTo, errorInputHint }) => (
 	<Container textAlign="justified">
 		<b>Oh, come on, let me remember for you.</b>
 		<Divider />
@@ -23,7 +23,10 @@ const AddLinks = ({ showButtonAdd, buttonShow, memoryLink, sendTo }) => (
 					onChange={showButtonAdd.bind(this)}
 					value={memoryLink}
 				/>
-				<Label pointing>Add smth you want to save</Label>
+				{errorInputHint
+					? <Label basic color="red" pointing>Enter correct link, please.</Label>
+					: <Label pointing>Add smth you want to save</Label>
+				}
 			</Form.Field>
 		</Form>
 		<div className="btnGroup">
@@ -54,6 +57,7 @@ AddLinks.propTypes = {
 	sendTo: PropTypes.func.isRequired,
 	buttonShow: PropTypes.bool,
 	memoryLink: PropTypes.string,
+	errorInputHint: PropTypes.bool,
 }
 
 export default AddLinks;

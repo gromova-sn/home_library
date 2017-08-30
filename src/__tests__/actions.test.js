@@ -20,9 +20,9 @@ describe("actions", () => {
 
 	it("need for change status show/hide button", () => {
 		const expectedAction = {
-			type: "SEND_TO_PAGE",
+			type: "EMPTY_INPUT",
 		}
-		expect(actions.sendToPage()).toEqual(expectedAction)
+		expect(actions.emptyInput()).toEqual(expectedAction)
 	})
 
 	it("need for change status isFetching:true", () => {
@@ -102,7 +102,7 @@ describe("async actions", () => {
 		const waiting = false;
 
 		const expectedActions = [
-			{ type:  "SEND_TO_PAGE" }
+			{ type:  "EMPTY_INPUT" }
 		]
 		const store = mockStore({ })
 
