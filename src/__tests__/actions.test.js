@@ -44,10 +44,12 @@ describe("actions", () => {
 	})
 
 	it("need for change status isFetching:false", () => {
+		const item = { url: "test1", to_learn: true };
 		const expectedAction = {
 			type: "RECEIVE_POST",
+			item
 		}
-		expect(actions.receivePost()).toEqual(expectedAction)
+		expect(actions.receivePost(item)).toEqual(expectedAction)
 	})
 })
 
@@ -120,8 +122,8 @@ describe("async actions", () => {
 		const item = { url: "test1", to_watch: true };
 		
 		const expectedActions = [
-			{ type: "REQUEST_WAIT", subreddit: subreddit },
-			{ type:  "RECEIVE_POST" }
+			{ type: "REQUEST_WAIT", subreddit },
+			{ type:  "RECEIVE_POST", item }
 		]
 		const store = mockStore({ })
 

@@ -42,9 +42,10 @@ export function fetchDataGet(subreddit) {
 }
 
 export const RECEIVE_POST = "RECEIVE_POST";
-export function receivePost() {
+export function receivePost(item) {
 	return {
 		type: RECEIVE_POST,
+		item
 	};
 }
 
@@ -66,7 +67,7 @@ export function fetchDataPost(subreddit, item, waiting = true) {
 				if (subreddit === "add") {
 					return dispatch(emptyInput());
 				} else {
-					return dispatch(receivePost());
+					return dispatch(receivePost(item));
 				}
 			});
 	};

@@ -4,12 +4,11 @@ import {
 	Container,
 	Divider,
 	List,
-	Icon,
 	Dimmer,
 	Loader,
 } from "semantic-ui-react";
+import ListItem from "./ListItem";
 import 'semantic-ui-css/semantic.min.css';
-import "../style/Pages.css";
 
 const LearnUp = ({ data, removeLink, isFetching }) => (
 	<Container textAlign='justified'>
@@ -20,29 +19,16 @@ const LearnUp = ({ data, removeLink, isFetching }) => (
 				<Loader inverted>Loading</Loader>
 			</Dimmer>
 			: <List bulleted>
-				{data.map((item, key) => {
-					return (
-						<List.Item key={key}>
-							<a
-								href={item.url}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="toLink"
-							>
-								{item.url}
-							</a>
-							<span
-								className="iconInline"
-								onClick={removeLink.bind(this, item)}
-							>
-								<Icon
-									name="trash"
-									color="blue" 
-								/>
-							</span>
-						</List.Item>
+				{data.length 
+					? data.map((item, key) => 
+						<ListItem
+							item={item}
+							key={`item_${key}`}
+							removeLink={removeLink}
+						/>
 					)
-				})}
+					: void 0
+				}
 			</List>
 		}
 	</Container>
@@ -50,8 +36,8 @@ const LearnUp = ({ data, removeLink, isFetching }) => (
 
 LearnUp.propTypes = {
 	data: PropTypes.array.isRequired,
-	removeLink: PropTypes.func,
 	isFetching: PropTypes.bool,
+	removeLink: PropTypes.func,
 }
 
 export default LearnUp;

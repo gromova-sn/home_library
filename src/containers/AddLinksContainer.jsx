@@ -31,7 +31,6 @@ class AddLinksContainer extends Component {
 				buttonShow={this.props.buttonShow}
 				sendTo={this.sendTo}
 				sendClose={this.props.sendToPageClose}
-				errorInputHint={this.props.errorInputHint}
 				memoryLink={this.props.memoryLink}
 			/>
 		)
@@ -51,7 +50,6 @@ const mapStateToProps = state => {
 		memoryLink: state.memoryLink,
 		buttonShow: state.buttonShow,
 		typeOfPage: state.typeOfPage,
-		errorInputHint: state.errorInputHint,
 	};
 };
 

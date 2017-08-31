@@ -23,10 +23,7 @@ const AddLinks = ({ showButtonAdd, buttonShow, memoryLink, sendTo, errorInputHin
 					onChange={showButtonAdd.bind(this)}
 					value={memoryLink}
 				/>
-				{errorInputHint
-					? <Label basic color="red" pointing>Enter correct link, please.</Label>
-					: <Label pointing>Add smth you want to save</Label>
-				}
+				<Label pointing>Add smth you want to save</Label>
 			</Form.Field>
 		</Form>
 		<div className="btnGroup">
@@ -57,7 +54,6 @@ AddLinks.propTypes = {
 	sendTo: PropTypes.func.isRequired,
 	buttonShow: PropTypes.bool,
 	memoryLink: PropTypes.string,
-	errorInputHint: PropTypes.bool,
 }
 
 export default AddLinks;
