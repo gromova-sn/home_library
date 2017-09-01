@@ -35,7 +35,6 @@ function links(state = initialState, action) {
 			data: action.posts,
 		});
 	case RECEIVE_POST:
-	console.log(action)
 		let _state = state.data.filter(item => item.url !== action.item.url);
 		return Object.assign({}, state, {
 			data: _state,
